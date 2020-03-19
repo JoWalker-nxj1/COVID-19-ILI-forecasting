@@ -1,0 +1,26 @@
+
+language: node_js
+sudo: required
+dist: bionic
+git:
+  depth: 1
+
+before_install:
+  # Key for cran trusty ppa
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 51716619E084DAB9
+
+  # Dependencies
+  - sudo apt-get install libv8-3.14-dev r-base r-base-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev fish -y
+  - chmod +x travis-main.sh
+  - sudo apt-get update
+  
+node_js:
+  - 7
+
+cache: yarn
+
+env:
+  global:
+  - ENCRYPTION_LABEL: dce9ae5740a9
+
+script: ./travis-main.sh
